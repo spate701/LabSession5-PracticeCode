@@ -3,7 +3,8 @@
 #include <stdlib.h>
 
 void sigint_handler(int sig){
-  printf("Signal handled.  Deal with it.\n");
+  char msg[] = "Signal handled.  Deal with it.\n";
+  write(1, msg, sizeof(msg));
   exit(0);
 }
 
