@@ -75,6 +75,14 @@ void eval(char *cmdline)
 
 	if (argv[0] == NULL) 
 		return;
+    
+    	if (!bin_cmnd(argv)) {
+		if ((pid = fork()) == 0) {
+			if (execve(argv[0], argv, environ) < 0) {
+			   printf("%s: ERROR! COMMAND DOES NOT EXIST.\n", argv[0]);
+                	   exit(0);
+			}
+		}
 	
 		if (!parseTrack) {
 			int status;
@@ -85,6 +93,7 @@ void eval(char *cmdline)
  
 			else
 				printf("%d %s", pid, cmdline);
+        }
 			 
 		return;
 } 
@@ -124,6 +133,21 @@ int parseline(char *buf, char **argv)
 	
 	return parseTrack;
 } 
+
+
+int bin_cmnd(char **argv)
+{
+		if(!strcmp(argv[0], "EXIT\n"))
+			exit(0);
+		return 0;
+}
+
+
+
+
+
+
+
 
 int main()
 {
