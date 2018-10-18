@@ -178,7 +178,7 @@ int main()
 
 		if(pid==0){
             //wait(&status);
-            printf("pid:%d status:%d\n", pid);
+            printf("pid 0\n");
             //printf("Child PID:%d\n", pid);        
 			execvp(arg[0],arg);
 		}
@@ -188,7 +188,7 @@ int main()
             int status;
             wait(&status);
             printf("My child has died with status %d. :(\n", WEXITSTATUS(status));
-            
+             
         }
 
         
