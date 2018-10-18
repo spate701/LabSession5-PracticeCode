@@ -135,7 +135,7 @@ int main()
 	char **arg = malloc(25*sizeof(char*));
 	signal_shell();		
 	while(1) {
-		printf("CS361> ");
+		printf("CS361 >");
 		fgets(cmdline, MAXLINE, stdin);
 		if(strcmp(cmdline, "exit\n")==0){
 			exit(0);
