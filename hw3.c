@@ -177,8 +177,8 @@ int main()
 			printf("Error: fork");
 
 		if(pid==0){
-            //printf("Child PID:%d\n", getpid());
-            printf("Child PID:%d\n", pid);        
+            printf("Child PID:%d\n", getpid());
+            //printf("Child PID:%d\n", pid);        
 			execvp(arg[0],arg);
 		}
 
