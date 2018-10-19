@@ -194,7 +194,7 @@ int main()
 
 		if ( WIFEXITED(status) ) {
                 	exit_status = WEXITSTATUS( status );
-                	printf("EXIT: %d\n", exit_status);
+                	//printf("EXIT: %d\n", exit_status);
             	}
             	
             }
