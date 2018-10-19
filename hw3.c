@@ -150,7 +150,8 @@ int bin_cmnd(char **argv)
 
 
 int main()
-{
+{   
+    int status;
 	int exit_status;
 	pid_t pid;
 	char cmdline[MAXLINE];
@@ -183,7 +184,6 @@ int main()
 		}
         
         else {
-             int status;
             wait(&status);
             printf("pid:%d status:%d\n", pid, WEXITSTATUS(status));
              
