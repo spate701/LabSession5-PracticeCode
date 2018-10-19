@@ -9,7 +9,8 @@
 #include <errno.h> 
 #include <sys/types.h>
 #include <sys/resource.h>
-#include <fcntl.h>
+
+
 
 
 
@@ -153,13 +154,9 @@ int main()
     int status;
 	int exit_status;
 	pid_t pid;
-    int key;
-    char file[100];
 	char cmdline[MAXLINE];
 	//int command;
-	//char **arg = malloc(25*sizeofSTCPY(FILE(char*)));
-    char **arg=malloc(25*sizeof(char**)*10);
-    //(char**)malloc(sizeof(char**)*10);
+	char **arg = malloc(25*sizeof(char*));
 	signal_shell();		
 	while(1) {
 		printf("CS361 >");
@@ -167,28 +164,12 @@ int main()
 		if(strcmp(cmdline, "exit\n")==0){
 			exit(0);
 		} 
-        
-        cmdline[strcspn(cmdline, "\r\n")] = '\0';
-        char *token = strtok(cmdline, "");
-        while(token){
-        if(strcmp(token, "<"))
-            key=1;
-            token=strtok(NULL, "");
-            strcpy(file,token);    
-        }
-        
-        
-        
-        
-        
-        
-		/*if (feof(stdin))
+		if (feof(stdin))
 			exit(0);
-        if(strcmp(cmdline))
 		
 		//if(strcmp(arg[1],"<"))
-            //printf("Success"); 
-		eval(cmdline, "<");*/
+			//printf("Success"); 
+		eval(cmdline);
 		pid = fork();
 		wait(NULL);
 		
@@ -198,15 +179,7 @@ int main()
 		if(pid==0){
             //wait(&status);
             //printf("pid 0\n");
-            //printf("Child PID:%d\n", pid);
-            if(pid == 0){
-                
-            
-                if(key == 1){
-                    int fd0=open(file, O_RDONLY);
-                    dup2(fd0,1);
-                }
-            }
+            //printf("Child PID:%d\n", pid);        
 			execvp(arg[0],arg);
 		}
         
@@ -223,7 +196,5 @@ int main()
                 	//printf("EXIT: %d\n", exit_status);
             	}
             	
-        }
+            }
 	}
-
-
